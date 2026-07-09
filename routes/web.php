@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\CarController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SumController;
 use Illuminate\Support\Facades\Route;
 
 Route::get("/", function () {
 
-    $aboutPageUrl = route('about');
-    dd($aboutPageUrl);
+    // $aboutPageUrl = route('about');
+    // dd($aboutPageUrl);
     return view('welcome');
 });
 
@@ -36,3 +39,11 @@ Route::get("/search/{search}", function (string $search){
 Route::get('/first/{a}/second/{b}', function(float $a, float $b){
     return $a + $b;
 })->whereNumber(['a','b']);
+
+Route::apiResources([
+    'products'=> ProductController::class,
+    'cars'=> CarController::class,
+]);
+
+Route::get('/sum/{a}/{b}', [SumController::class, 'sum'])->whereNumber(['a','b']);
+Route::get('/subtract/{a}/{b}', [SumController::class, 'subtract'])->whereNumber(['a','b']);
