@@ -1,10 +1,12 @@
+@props(['title' => '', 'bodyClass' => ''])
+
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title') | {{ config('app.name') }}</title>
+    <title>{{ $title }} | {{ config('app.name') }}</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,11 +22,11 @@
       referrerpolicy="no-referrer"
     />
 
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/css/app.css') }}" />
   </head>
-  <body @isset($cssClass)class="{{ $cssClass }}"@endisset>
+  <body @if($bodyClass)class="{{ $bodyClass }}"@endif>
 
-    @yield('childContent')
+   {{ $slot }}
 
     <script
     src="https://cdnjs.cloudflare.com/ajax/libs/scrollReveal.js/4.0.9/scrollreveal.js"
@@ -32,7 +34,7 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   ></script>
-  <script src="{{ asset('js/app.js') }}"></script>
+  <script src="{{ asset('/js/app.js') }}"></script>
 
   @yield('scripts')
 </body>
