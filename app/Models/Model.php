@@ -10,4 +10,6 @@ class Model extends EloquentModel
     use SoftDeletes;
 
     public $timestamps = false;
+
+    protected $fillable = ['maker_id', 'name'];
 }
