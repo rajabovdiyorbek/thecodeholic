@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('maker_id')->constrained('makers');
             $table->string('name', 45);
+            $table->softDeletes();
         });
     }
 
