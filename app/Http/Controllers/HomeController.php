@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Car;
 use App\Models\CarType;
+use App\Models\Maker;
+use App\Models\Model;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -62,10 +64,21 @@ class HomeController extends Controller
         // $user = User::find(1);
         // dd($user->favoriteCars);
 
-        $user = User::find(1);
+        // $user = User::find(1);
         // $user->favoriteCars()->sync([4]);
 
-        $user->favoriteCars()->detach();
+        // $user->favoriteCars()->detach();
+        // $makers = Maker::factory()->count(10)->create();
+        // dd($makers);
+        // Model::factory()
+        //     ->count(5)
+        //     ->forMaker(['name' => 'Lexus'])
+        //     ->create();
+
+        User::factory()
+            ->has(Car::factory()->count(5), 'favoriteCars')
+            ->create();
+
         return view('home.index');
     }
 }
