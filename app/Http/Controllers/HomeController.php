@@ -75,9 +75,9 @@ class HomeController extends Controller
         //     ->forMaker(['name' => 'Lexus'])
         //     ->create();
 
-        User::factory()
-            ->has(Car::factory()->count(5), 'favoriteCars')
-            ->create();
+        // User::factory()
+        //     ->has(Car::factory()->count(5), 'favoriteCars')
+        //     ->create();
 
         return view('home.index');
     }
